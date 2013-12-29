@@ -125,14 +125,15 @@ Type guessing happens during form submit, hence it is important to use the built
 
 There are two available form types:
 
- * ibrows_media_link: offers a text field where you can submit a link (e.g. youtube link, soundcloud link)
- * ibrows_media_upload: offers a file field in order to upload a file
+ * **ibrows_media_link**: offers a text field where you can submit a link (e.g. youtube link, soundcloud link)
+ * **ibrows_media_upload**: offers a file field in order to upload a file
 
 Each form definition needs the "data_class" attribute set in order to know which entity it should use to persist. 
 The entity given should implement the MediaInterface.
 Additionally there is a "type" option where you can define the supported types either as an array or a single string.
 
 Below is an example usage of the different form types.
+
 ```
 <?php
 
