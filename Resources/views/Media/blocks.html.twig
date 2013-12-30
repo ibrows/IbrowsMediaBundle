@@ -11,9 +11,13 @@
 {% endblock %}
 
 {% block image %}
-{% set source = params.format is defined ? type.getExtraFileUrl(media, params.format) : media.url %}
+{% set source = params.format is defined ? type.getExtraFileUrl(media, params.format) : null %}
 <div class="media image">
-    <img src="{{ asset(source) }}" alt="" />
+    {% if source is not null %}
+    <img src="{{ asset(source) }}" alt="{{ media.extra.originalFilename }}" />
+    {% else %}
+    <img src="{{ asset(media.url) }}" alt="{{ media.extra.originalFilename }}" />
+    {% endif %}
 </div>
 {% endblock %}
 

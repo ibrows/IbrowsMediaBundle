@@ -70,9 +70,13 @@ class CoreExtension extends \Twig_Extension
             $this->template = $this->twig->loadTemplate($this->templateName);
         }
         $typename = $media->getType();
+        // TODO: check for block existence
+        // has block does not check parent templates
+        /*
         if (! $this->template->hasBlock($typename)) {
             throw new BlockNotDefinedException($media, $this->templateName);
         }
+        */
 
         return $this->template->renderBlock($typename, array(
             'media' => $media,

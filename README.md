@@ -349,6 +349,32 @@ class PdfType extends UploadedFileType
 ### Templating
 Each media type needs its own block inside the global media template.
 The block is identified using the media type name as returned by the getName function.
+The template can be overridden using the template config option.
+
+It is possible to render the media using the built-in ibrows_media twig function.
+
+```
+{{ ibrows_media(media, {'format':'small'}) }}
+```
+
+The block will be rendered with the following variables:
+
+ * **media**: The media entity itself.
+ * **type**: The type for the media.
+ * **params**: The array passed to the ibrows_media twig function.
+
+For example the block for the pdf type could look like this:
+
+```
+{% block pdf %}
+{% set source = type.getExtraFileUrl(media, 'preview') %}
+<div class="media pdf">
+    <a href="{{ asset(media.url) }}">
+        <img src="{{ asset(source) }}" alt="{{ media.extra.originalFilename }}" />
+    </a>
+</div>
+{% endblock %}
+```
 
 ### Migration
 There also is a migration command, which lets you migrate all or a specific type to a given or guessed target type.
